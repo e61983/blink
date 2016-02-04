@@ -11,7 +11,7 @@ OBJS := $(addprefix $(OUTDIR)/,$(patsubst %s,%.o,$(SRC:.c=.o)) )
 TARGET = blink
 OUTDIR = build
 
-.PHONY: all
+.PHONY: all clean flash openocd gdb
 
 OBJS = $(SRC:.c=.o)
 
@@ -33,3 +33,12 @@ $(OUTDIR)/$(TARGET).bin: $(OUTDIR)/$(TARGET).elf
 
 clean:
 	rm -rf $(OUTDIR)
+
+flash:
+	st-flash write $(OUTDIR)/$(TARGET).bin 0x8000000
+
+gdb:
+	$(GDB) -q -x .gdbinit $(OUTDIR)/$(TARGET).elf
+
+openocd:
+	openocd -f board/stm32f4discovery.cfg
