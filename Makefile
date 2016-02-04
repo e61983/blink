@@ -1,8 +1,9 @@
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
+GDB = arm-none-eabi-gdb
 
-CFLAGS = -g --std=c99
+CFLAGS = -ggdb3 --std=c99
 CFLAGS += -mcpu=cortex-m4 -mthumb -nostartfiles 
 CFLAGS += -Tsimple.ld
 SRC = blink.c
