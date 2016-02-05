@@ -28,7 +28,7 @@
 *.x86_64
 *.hex
 build/
-*gtag*
+*G*
 
 # Debug files
 *.dSYM/
