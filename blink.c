@@ -3,8 +3,33 @@
 #define GPIOG_BSRR  (* ( ( volatile unsigned long* )( 0x40021800 + 0x18 ) ) )
 #define RCC_AHB1ENR (* ( ( volatile unsigned long* )( 0x40023800 + 0x30 ) ) )
 
+typedef void (*pfnISR)(void);
+
+extern unsigned long _etext;
+extern unsigned long _data;
+extern unsigned long _edata;
+extern unsigned long _bss;
+extern unsigned long _ebss;
+
 __asm__(".word 0x20001000");
 __asm__(".word main");
+
+void   ResetISR(void);
+void   NMIException(void);
+void   HardFaultException(void);
+
+__attribute__((section(".isr_vector")))
+pfnISR VectorTable[] = {
+    (pfnISR)(0x20010000),
+      ResetISR,
+      NMIException,
+      HardFaultException
+};
+
+void   ResetISR(void){
+}
+void   NMIException(void){}
+void   HardFaultException(void){}
 
 int main(void){
     RCC_AHB1ENR = (1<<6);    /* GPIOG ON  */
