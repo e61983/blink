@@ -42,6 +42,7 @@ void   NMIException(void){}
 __attribute__((section(".isr")))
 void   HardFaultException(void){}
 
+__attribute__((section(".myfunc")))
 void bink(void){
     for (int c = 0; c < 100000; c++) {
         GPIOG_BSRR = (11<<29);

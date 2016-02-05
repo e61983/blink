@@ -19,6 +19,7 @@ SECTIONS{
         _data = .;
         *(.data)
         *(.isr)
+        *(.myfunc)
         . = ALIGN(4);
         _edata = .;
     } > SRAM
