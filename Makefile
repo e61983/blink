@@ -27,7 +27,7 @@ $(OUTDIR)/%.o: %.c
 
 $(OUTDIR)/$(TARGET).elf: $(OUTDIR)/$(OBJS)
 	@echo " LD "$@
-	@$(CC) $(CFLAGS) -o $@ $^ 
+	@$(CC) $(CFLAGS) -Wl,-Map=$(OUTDIR)/$(TARGET).map -o $@ $^
 
 $(OUTDIR)/$(TARGET).bin: $(OUTDIR)/$(TARGET).elf
 	@echo " OBJCOPY "$@
