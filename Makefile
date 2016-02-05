@@ -14,6 +14,8 @@ OUTDIR = build
 
 .PHONY: all clean flash openocd gdb
 
+DUMPTYPE ?= .text
+
 OBJS = $(SRC:.c=.o)
 
 all: $(OUTDIR)/$(TARGET).bin
@@ -39,7 +41,7 @@ flash:
 	st-flash write $(OUTDIR)/$(TARGET).bin 0x8000000
 
 dump:
-	$(OBJDUMP) -d -j .text $(OUTDIR)/$(TARGET).elf
+	$(OBJDUMP) -d -j $(DUMPTYPE)  $(OUTDIR)/$(TARGET).elf
 
 
 gdb:
