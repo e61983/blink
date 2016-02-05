@@ -1,5 +1,6 @@
 CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
+OBJDUMP = arm-none-eabi-objdump
 SIZE = arm-none-eabi-size
 GDB = arm-none-eabi-gdb
 
@@ -36,6 +37,10 @@ clean:
 
 flash:
 	st-flash write $(OUTDIR)/$(TARGET).bin 0x8000000
+
+dump:
+	$(OBJDUMP) -d -j .text $(OUTDIR)/$(TARGET).elf
+
 
 gdb:
 	$(GDB) -q -x .gdbinit $(OUTDIR)/$(TARGET).elf
