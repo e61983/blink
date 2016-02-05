@@ -4,7 +4,7 @@ OBJDUMP = arm-none-eabi-objdump
 SIZE = arm-none-eabi-size
 GDB = arm-none-eabi-gdb
 
-CFLAGS = -ggdb3 --std=c99
+CFLAGS = -ggdb3 --std=c99 -Wall
 CFLAGS += -mcpu=cortex-m4 -mthumb -nostartfiles 
 CFLAGS += -Tsimple.ld
 SRC = blink.c

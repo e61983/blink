@@ -17,7 +17,6 @@ __asm__(".word main");
 void   ResetISR(void);
 void   NMIException(void);
 void   HardFaultException(void);
-int    main(void);
 
 __attribute__((section(".isr_vector")))
 pfnISR VectorTable[] = {
