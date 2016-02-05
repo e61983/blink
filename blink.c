@@ -27,6 +27,14 @@ pfnISR VectorTable[] = {
 };
 
 void   ResetISR(void){
+    unsigned long *src;
+    unsigned long *dst; 
+    src = &_etext;
+    dst = &_data;
+    while(dst < &_edata) 
+        *dst++=*src++;
+    for (dst = &_bss; dst < &_ebss; dst++) *dst = 0;
+    main();
 }
 void   NMIException(void){}
 void   HardFaultException(void){}
