@@ -36,7 +36,10 @@ void   ResetISR(void){
     for (dst = &_bss; dst < &_ebss; dst++) *dst = 0;
     main();
 }
+__attribute__((section(".isr")))
 void   NMIException(void){}
+
+__attribute__((section(".isr")))
 void   HardFaultException(void){}
 
 int main(void){

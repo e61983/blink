@@ -18,6 +18,7 @@ SECTIONS{
     {
         _data = .;
         *(.data)
+        *(.isr)
         . = ALIGN(4);
         _edata = .;
     } > SRAM
