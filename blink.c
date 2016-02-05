@@ -42,16 +42,20 @@ void   NMIException(void){}
 __attribute__((section(".isr")))
 void   HardFaultException(void){}
 
+void bink(void){
+    for (int c = 0; c < 100000; c++) {
+        GPIOG_BSRR = (11<<29);
+    }
+    for (int c = 0; c < 100000; c++) {
+        GPIOG_BSRR = (11<<13);
+    }
+}
+
 int main(void){
     RCC_AHB1ENR = (1<<6);    /* GPIOG ON  */
     GPIOG_CRH = 0x14000000;
     while(1){
-        for (int c = 0; c < 100000; c++) {
-            GPIOG_BSRR = (11<<29); 
-        }
-        for (int c = 0; c < 100000; c++) {
-            GPIOG_BSRR = (11<<13); 
-        }
+        bink();
     }
 }
 
